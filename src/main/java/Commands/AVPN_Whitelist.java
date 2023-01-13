@@ -19,28 +19,28 @@ public class AVPN_Whitelist extends Command implements TabExecutor {
         instance = BungeeVPN.instance;
     }
 
+    @SuppressWarnings("all")
     @Override
     public void execute(CommandSender sender, String[] args) {
-        ProxiedPlayer proxiedPlayer;
-
         boolean isSenderPlayer = sender instanceof ProxiedPlayer;
+        UUID uuid;
 
-        if (args.length != 0) proxiedPlayer = instance.getProxy().getPlayer(args[1]);
-        else {instance.getLogger().info("Please follow correct format. /avpn <add/remove> <player>"); return;}
+        if (args.length != 0) uuid = UUID.fromString(args[1]);
+        else {instance.getLogger().info("Please follow correct format. /avpn <add/remove> <UUID>"); return;}
 
 
         switch (args[0]) {
             case "add" -> {
-                instance.getMemory().addWhitelistedPlayer(proxiedPlayer);
+                instance.getMemory().addWhitelistedPlayer(uuid);
 
-                if (isSenderPlayer) sender.sendMessage(new TextComponent("Added player " + proxiedPlayer.getName() + " to whitelist."));
-                else instance.getLogger().info("Added player " + proxiedPlayer.getName() + " to whitelist.");
+                if (isSenderPlayer) sender.sendMessage(new TextComponent("Added player " + uuid + " to whitelist."));
+                else instance.getLogger().info("Added player " + uuid + " to whitelist.");
             }
             case "remove" -> {
-                instance.getMemory().removeWhitelistedPlayer(proxiedPlayer);
+                instance.getMemory().removeWhitelistedPlayer(uuid);
 
-                if (isSenderPlayer) sender.sendMessage(new TextComponent("Attempting to remove player " + proxiedPlayer + " from whitelist."));
-                else instance.getLogger().info("Attempting to remove player " + proxiedPlayer.getName() + " from whitelist.");
+                if (isSenderPlayer) sender.sendMessage(new TextComponent("Attempting to remove player " + uuid + " from whitelist."));
+                else instance.getLogger().info("Attempting to remove player " + uuid + " from whitelist.");
             }
         }
 

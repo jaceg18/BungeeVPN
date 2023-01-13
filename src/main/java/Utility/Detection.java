@@ -166,8 +166,8 @@ public class Detection {
         connection.setConnectTimeout(timeout);
         connection.setDoInput(true);
         connection.setDoOutput(true);
-        connection.setRequestProperty("User-Agent", "AntiVPN");
-        connection.setRequestProperty("tag", "AntiVPN");
+        connection.setRequestProperty("User-Agent", tag);
+        connection.setRequestProperty("tag", tag);
         try (BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
             while ((url = in.readLine()) != null)
                 response.append(url);

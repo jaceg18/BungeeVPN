@@ -42,17 +42,13 @@ public final class BungeeVPN extends Plugin implements Listener {
         if (memory.getAPIKey().equalsIgnoreCase("KEY"))
             getLogger().info("Optional: Specify API-KEY in configuration file.");
 
-        getProxy().getScheduler().schedule(this, () -> {
-            playerCache.clear();
-            getLogger().info("Cache cleared");
-        }, (long) memory.getRejoinTime(), TimeUnit.MINUTES);
-
-
     }
 
     @SuppressWarnings("all")
     @EventHandler
     public void checkUserOnLog(PostLoginEvent e) {
+
+        getLogger().info("Player: " + e.getPlayer().getDisplayName() + " UUID: " + e.getPlayer().getUniqueId());
 
         boolean whitelistBypass = false;
         boolean inCacheTime = (playerCache.contains(e.getPlayer().getUniqueId()));
@@ -65,7 +61,7 @@ public final class BungeeVPN extends Plugin implements Listener {
             Detection detection = new Detection(null);
             detection.useSSL();
             detection.setUseVpn(true);
-
+            detection.setTag(memory.getTag());
 
             if (!memory.getAPIKey().equalsIgnoreCase("KEY"))
                 detection.set_api_key(memory.getAPIKey());

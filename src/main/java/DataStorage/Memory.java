@@ -25,6 +25,8 @@ public class Memory {
 
     boolean whitelistEnabled;
 
+    String tag;
+
     private final File whitelistFile;
 
 
@@ -75,6 +77,7 @@ public class Memory {
         API_Key = defaultConfig.getString("API-KEY");
         rejoinTime = defaultConfig.getDouble("Check-On-Rejoin-Time");
         whitelistEnabled = defaultConfig.getBoolean("WHITELIST");
+        tag = defaultConfig.getString("TAG");
 
     }
 
@@ -112,15 +115,15 @@ public class Memory {
     public List<UUID> getWhitelistedPlayers(){
         return whitelist.stream().map(WhitelistedPlayer::getPlayerUUID).toList();
     }
-    public void addWhitelistedPlayer(ProxiedPlayer player){
+    public void addWhitelistedPlayer(UUID player){
         if (player != null)
-            whitelist.add(new WhitelistedPlayer(player.getUniqueId()));
+            whitelist.add(new WhitelistedPlayer(player));
         else
             instance.getLogger().info("Are you sure this player exists?");
     }
-    public void removeWhitelistedPlayer(ProxiedPlayer player){
+    public void removeWhitelistedPlayer(UUID player){
         if (player != null)
-            whitelist.removeIf(whitelistedPlayer -> whitelistedPlayer.getPlayerUUID().equals(player.getUniqueId()));
+            whitelist.removeIf(whitelistedPlayer -> whitelistedPlayer.getPlayerUUID().equals(player));
         else
             instance.getLogger().info("Are you sure this player exists?");
     }
@@ -132,5 +135,9 @@ public class Memory {
 
     public boolean isWhitelistEnabled(){
         return whitelistEnabled;
+    }
+
+    public String getTag(){
+        return tag;
     }
 }
