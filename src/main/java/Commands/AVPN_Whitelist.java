@@ -19,6 +19,7 @@ public class AVPN_Whitelist extends Command implements TabExecutor {
         instance = BungeeVPN.instance;
     }
 
+
     @SuppressWarnings("all")
     @Override
     public void execute(CommandSender sender, String[] args) {
