@@ -26,6 +26,10 @@ public class AVPN_Whitelist extends Command implements TabExecutor {
         boolean isSenderPlayer = sender instanceof ProxiedPlayer;
         UUID uuid;
 
+
+        if (args[0].equals("reload"))
+            instance.getMemory().reload();
+
         if (args.length != 0) uuid = UUID.fromString(args[1]);
         else {instance.getLogger().info("Please follow correct format. /avpn <add/remove> <UUID>"); return;}
 

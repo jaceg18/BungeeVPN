@@ -7,6 +7,6 @@ description: Lightweight antivpn for bungee waterfall
 commands:
   avpn:
     description: add or remove a player from ip-checking
-    usage: /<command> <add/remove> <player>
+    usage: /<command> <add/remove/reload> <player>
     permission: bungeecord.avpn.command
     permission-message: Command requires bungeecord.avpn.command to execute

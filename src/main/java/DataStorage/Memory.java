@@ -137,6 +137,11 @@ public class Memory {
         return whitelistEnabled;
     }
 
+    public void reload(){
+        checkFiles();
+        instance.setMemory(this);
+    }
+
     public String getTag(){
         return tag;
     }
