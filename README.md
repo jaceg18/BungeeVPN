@@ -11,4 +11,4 @@ You must set yourself as an administrator in bungeecord's config.yml to access c
 - Warning: Permissions plugins like group manager will not override the permissions node. You must follow the directions above.
 
 
-For support please contact: jacerg181@gmail.com
+For support please contact: jaceg18@gmail.com
